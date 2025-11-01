@@ -31,9 +31,9 @@ FROM  ghcr.io/ublue-os/kinoite-main:latest
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
 #RUN rpm-ostree install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-#COPY zram-generator.conf /usr/lib/systemd/zram-generator.conf
-#RUN rpm-ostree install distrobox just htop powertop fastfetch btop neovim figlet lolcat gparted nvtop gh cronie cronie-anacron rpmdevtools vim-common chromium vlc zsh thunderbird qemu go git-lfs pip
-#RUN rpm-ostree install libvirt-daemon-driver-network libvirt-daemon-driver-nodedev libvirt-daemon-driver-qemu libvirt-daemon-driver-storage-core qemu-audio-spice qemu-char-spice qemu-device-display-qxl qemu-device-display-virtio-gpu qemu-device-display-virtio-vga qemu-device-usb-redirect qemu-system-x86-core spice-server spice-gtk virt-viewer texlive-scheme-full
+COPY zram-generator.conf /usr/lib/systemd/zram-generator.conf
+RUN rpm-ostree install distrobox just htop powertop fastfetch btop neovim figlet lolcat gparted nvtop gh cronie cronie-anacron rpmdevtools vim-common chromium vlc zsh thunderbird qemu go git-lfs pip
+RUN rpm-ostree install libvirt-daemon-driver-network libvirt-daemon-driver-nodedev libvirt-daemon-driver-qemu libvirt-daemon-driver-storage-core qemu-audio-spice qemu-char-spice qemu-device-display-qxl qemu-device-display-virtio-gpu qemu-device-display-virtio-vga qemu-device-usb-redirect qemu-system-x86-core spice-server spice-gtk virt-viewer texlive-scheme-full
 #RUN curl -fsSL https://repo.librewolf.net/librewolf.repo > /etc/yum.repos.d/librewolf.repo &&  rpm-ostree install librewolf
 #RUN wget https://copr.fedorainfracloud.org/coprs/xanderlent/amd-npu-driver/repo/fedora-43/xanderlent-amd-npu-driver-fedora-43.repo
 #RUN sudo install -o 0 -g 0 -m644 xanderlent-amd-npu-driver-fedora-43.repo /etc/yum.repos.d/xanderlent-amd-npu-driver-fedora-43.repo
