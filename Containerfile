@@ -3,7 +3,8 @@ FROM scratch AS ctx
 COPY build_files /
 COPY pci_pm.rules /etc/udev/rules.d/
 # Base Image
-FROM  ghcr.io/ublue-os/kinoite-main:latest
+FROM quay.io/fedora/fedora-kinoite:latest
+#FROM  ghcr.io/ublue-os/kinoite-main:latest
 #FROM ghcr.io/ublue-os/bazzite:stable
 #FROM quay.io/fedora/fedora-bootc:43
 ## Other possible base images include:
