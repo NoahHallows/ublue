@@ -3,8 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 COPY pci_pm.rules /etc/udev/rules.d/
 # Base Image
-FROM quay.io/fedora/fedora-kinoite:latest
-#FROM  ghcr.io/ublue-os/kinoite-main:latest
+FROM  ghcr.io/ublue-os/kinoite-main:latest
 #FROM ghcr.io/ublue-os/bazzite:stable
 #FROM quay.io/fedora/fedora-bootc:43
 ## Other possible base images include:
@@ -35,13 +34,13 @@ FROM quay.io/fedora/fedora-kinoite:latest
 COPY zram-generator.conf /usr/lib/systemd/zram-generator.conf
 RUN rpm-ostree install distrobox just htop powertop fastfetch btop neovim figlet lolcat gparted nvtop gh cronie cronie-anacron rpmdevtools vim-common chromium vlc zsh thunderbird qemu go git-lfs pip
 RUN rpm-ostree install libvirt-daemon-driver-network libvirt-daemon-driver-nodedev libvirt-daemon-driver-qemu libvirt-daemon-driver-storage-core qemu-audio-spice qemu-char-spice qemu-device-display-qxl qemu-device-display-virtio-gpu qemu-device-display-virtio-vga qemu-device-usb-redirect qemu-system-x86-core spice-server spice-gtk virt-viewer texlive-scheme-full
-#RUN curl -fsSL https://repo.librewolf.net/librewolf.repo > /etc/yum.repos.d/librewolf.repo &&  rpm-ostree install librewolf
+RUN curl -fsSL https://repo.librewolf.net/librewolf.repo > /etc/yum.repos.d/librewolf.repo &&  rpm-ostree install librewolf
 
-#RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
-#    --mount=type=cache,dst=/var/cache \
-#    --mount=type=cache,dst=/var/log \
-#    --mount=type=tmpfs,dst=/tmp \
-#    /ctx/build.sh
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=tmpfs,dst=/tmp \
+    /ctx/build.sh
 
 #RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
 #    systemctl enable rpm-ostreed-automatic.timer && \
