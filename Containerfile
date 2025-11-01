@@ -31,7 +31,7 @@ FROM quay.io/fedora/fedora-kinoite:latest
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
-RUN rpm-ostree install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+#RUN rpm-ostree install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 COPY zram-generator.conf /usr/lib/systemd/zram-generator.conf
 RUN rpm-ostree install distrobox just htop powertop fastfetch btop neovim figlet lolcat gparted nvtop gh cronie cronie-anacron rpmdevtools vim-common chromium vlc zsh thunderbird qemu go git-lfs pip
 RUN rpm-ostree install libvirt-daemon-driver-network libvirt-daemon-driver-nodedev libvirt-daemon-driver-qemu libvirt-daemon-driver-storage-core qemu-audio-spice qemu-char-spice qemu-device-display-qxl qemu-device-display-virtio-gpu qemu-device-display-virtio-vga qemu-device-usb-redirect qemu-system-x86-core spice-server spice-gtk virt-viewer texlive-scheme-full
@@ -46,7 +46,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 #RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
 #    systemctl enable rpm-ostreed-automatic.timer && \
 #    systemctl enable flatpak-automatic.timer && \
-RUN    ostree container commit
+#RUN    ostree container commit
     
 ### LINTING
 ## Verify final image and contents are correct.
